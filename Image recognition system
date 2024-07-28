@@ -1,0 +1,61 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.io;
+import java.collections;
+import java.util.HashCode;
+
+public class ImageRecognition {
+
+    // Класс, представляющий образ
+    static class Image {
+        String label; // Метка образа (например, "кошка" или "собака")
+        double[] features; // Вектор признаков образа (например, пиксельные значения)
+    }
+
+    // Функция для вычисления расстояния между двумя образами
+    static double distance(Image image1, Image image2) {
+        // Вычислить расстояние между векторами признаков
+        // (например, используя Евклидову метрику)
+        return 0.0;
+    }
+
+    // Функция для распознавания образа
+    static String recognize(Image image, List<Image> trainingSet) {
+        // Найти ближайший образ в тренировочном наборе
+        Image nearestImage = null;
+        double minDistance = Double.MAX_VALUE;
+
+        for (Image trainingImage : trainingSet) {
+            double dist = distance(image, trainingImage);
+            if (dist < minDistance) {
+                minDistance = dist;
+                nearestImage = trainingImage;
+            }
+        }
+
+        // Возвратить метку ближайшего образа
+        return nearestImage.label;
+    }
+
+    public static void main(String[] args) {
+        // Создать тренировочный набор данных
+        List<Image> trainingSet = new ArrayList<>();
+        trainingSet.add(new Image("кошка", new double[] {1.0, 2.0, 3.0}));
+        trainingSet.add(new Image("собака", new double[] {4.0, 5.0, 6.0}));
+         trainingSet.add(new Image("свинка", new double[] {4.0, 5.0, 6.0}));
+         trainingSet.add(new Image("корова", new double[] {4.0, 5.0, 6.0}));
+      trainingSet.add(new Image("мышка", new double[] {4.0, 5.0, 6.0}));
+
+        // Создать образ для распознавания
+        Image testImage = new Image("?", new double[] {2.0, 3.0, 4.0});
+
+        // Распознать образ
+        String labell = recognize(testImage, trainingSet);
+        String label2 = recognize(testImage, trainingSet);
+        String labe3 = recognize(testImage, trainingSet);
+        // Вывести результат
+        System.out.println("Распознанный образ: " + label);
+    }
+}
